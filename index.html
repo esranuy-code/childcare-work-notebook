@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#103a34">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<meta name="description" content="보육 예산과 부모급여·양육수당을 확인하는 보육 업무수첩">
+<title>보육 업무 수첩</title>
+<!-- 아래 데이터는 CSV의 헤더와 빈 셀을 그대로 보존합니다. -->
+<script type="application/json" id="source-data">{"periods":"key,no,name,type,period,amount,gook,gigeum,do,si,exec,execAsOf\n외국인 아동 차액 보육료 지원(자체)|2026-3,1,외국인 아동 차액 보육료 지원(자체),자체,2026-3,312000,0,0,0,312000,,\n급식위생관리 지원|2026-3,2,급식위생관리 지원,보조,2026-3,47361,,,,,,\n어린이집 유아 급식비 지원|2026-3,3,어린이집 유아 급식비 지원,보조,2026-3,815063,0,0,815063,0,,\n\"어린이집 운영지원(급식비, 운영비)|2026-3\",4,\"어린이집 운영지원(급식비, 운영비)\",보조,2026-3,398044,,,,,,\n어린이집 운영비 지원(0~2세)|2026-3,5,어린이집 운영비 지원(0~2세),보조,2026-3,87120,0,0,87120,0,,\n영유아보육료|2026-3,6,영유아보육료,보조,2026-3,10913628,,,,,,\n외국인자녀 보육지원 사업|2026-3,7,외국인자녀 보육지원 사업,보조,2026-3,317435,,,,,,\n가정양육수당 지원|2026-3,8,가정양육수당 지원,보조,2026-3,101897,,,,,,\n누리과정 운영|2026-3,9,누리과정 운영,보조,2026-3,5127648,0,0,5127648,0,,\n누리과정차액보육료|2026-3,10,누리과정차액보육료,보조,2026-3,578524,0,0,289262,289262,,\n누리과정 3~5세 추가 지원|2026-3,11,누리과정 3~5세 추가 지원,보조,2026-3,706800,0,0,706800,0,,\n영아표준보육과정 프로그램 지원|2026-3,12,영아표준보육과정 프로그램 지원,보조,2026-3,78924,0,0,39462,39462,,\n부모급여|2026-3,13,부모급여,보조,2026-3,6842335,,,,,,\n유·보 활성화: 무상보육 3세 지원|2026-3,14,유·보 활성화: 무상보육 3세 지원,자체,2026-3,308000,0,0,0,308000,,\n유·보 활성화: 다문화·외국인 특성화 어린이집|2026-3,15,유·보 활성화: 다문화·외국인 특성화 어린이집,자체,2026-3,20000,0,0,0,20000,,\n무상보육 4~5세 지원|2026-3,16,무상보육 4~5세 지원,보조,2026-3,651000,0,0,651000,0,,\n외국인 아동 차액 보육료 지원(자체)|2026-4,1,외국인 아동 차액 보육료 지원(자체),자체,2026-4,312000,0,0,0,312000,,\n급식위생관리 지원|2026-4,2,급식위생관리 지원,보조,2026-4,46528,27917,0,13028,5583,,\n어린이집 유아 급식비 지원|2026-4,3,어린이집 유아 급식비 지원,보조,2026-4,815063,0,0,815063,0,,\n\"어린이집 운영지원(급식비, 운영비)|2026-4\",4,\"어린이집 운영지원(급식비, 운영비)\",보조,2026-4,403646,0,0,121090,282556,,\n어린이집 운영비 지원(0~2세)|2026-4,5,어린이집 운영비 지원(0~2세),보조,2026-4,77580,0,0,77580,0,,\n영유아보육료|2026-4,6,영유아보육료,보조,2026-4,10246961,7685221,0,1793218,768522,,\n외국인자녀 보육지원 사업|2026-4,7,외국인자녀 보육지원 사업,보조,2026-4,317435,,,,,,\n가정양육수당 지원|2026-4,8,가정양육수당 지원,보조,2026-4,101897,,,,,,\n누리과정 운영|2026-4,9,누리과정 운영,보조,2026-4,5073192,0,0,5073192,0,,\n누리과정차액보육료|2026-4,10,누리과정차액보육료,보조,2026-4,578524,0,0,289262,289262,,\n누리과정 3~5세 추가 지원|2026-4,11,누리과정 3~5세 추가 지원,보조,2026-4,706800,0,0,706800,0,,\n영아표준보육과정 프로그램 지원|2026-4,12,영아표준보육과정 프로그램 지원,보조,2026-4,87000,0,0,43500,43500,,\n부모급여|2026-4,13,부모급여,보조,2026-4,7420189,5565142,0,1298533,556514,,\n유·보 활성화: 무상보육 3세 지원|2026-4,14,유·보 활성화: 무상보육 3세 지원,자체,2026-4,237000,0,0,0,237000,,\n유·보 활성화: 다문화·외국인 특성화 어린이집|2026-4,15,유·보 활성화: 다문화·외국인 특성화 어린이집,자체,2026-4,20000,0,0,0,20000,,\n무상보육 4~5세 지원|2026-4,16,무상보육 4~5세 지원,보조,2026-4,547582,0,0,547582,0,,\n외국인 아동 차액 보육료 지원(자체)|2027-0,1,외국인 아동 차액 보육료 지원(자체),자체,2027-0,312000,0,0,0,312000,,\n급식위생관리 지원|2027-0,2,급식위생관리 지원,보조,2027-0,35316,17658,0,8829,8829,,\n어린이집 유아 급식비 지원|2027-0,3,어린이집 유아 급식비 지원,보조,2027-0,809932,0,0,809932,0,,\n\"어린이집 운영지원(급식비, 운영비)|2027-0\",4,\"어린이집 운영지원(급식비, 운영비)\",보조,2027-0,398044,0,0,119413,278631,,\n어린이집 운영비 지원(0~2세)|2027-0,5,어린이집 운영비 지원(0~2세),보조,2027-0,77580,,,,,,\n영유아보육료|2027-0,6,영유아보육료,보조,2027-0,11967644,7778968,0,2094338,2094338,,\n외국인자녀 보육지원 사업|2027-0,7,외국인자녀 보육지원 사업,보조,2027-0,317435,,,,,,\n가정양육수당 지원|2027-0,8,가정양육수당 지원,보조,2027-0,93706,60908,0,16399,16399,,\n누리과정 운영|2027-0,9,누리과정 운영,보조,2027-0,4509360,0,0,4509360,0,,\n누리과정차액보육료|2027-0,10,누리과정차액보육료,보조,2027-0,853764,0,0,426882,426882,,\n누리과정 3~5세 추가 지원|2027-0,11,누리과정 3~5세 추가 지원,보조,2027-0,604800,0,0,604800,0,,\n영아표준보육과정 프로그램 지원|2027-0,12,영아표준보육과정 프로그램 지원,보조,2027-0,87000,,,,,,\n부모급여|2027-0,13,부모급여,보조,2027-0,6512971,4233431,0,1139770,1139770,,\n유·보 활성화: 무상보육 3세 지원|2027-0,14,유·보 활성화: 무상보육 3세 지원,자체,2027-0,49000,0,0,0,49000,,\n유·보 활성화: 다문화·외국인 특성화 어린이집|2027-0,15,유·보 활성화: 다문화·외국인 특성화 어린이집,자체,2027-0,20000,0,0,0,20000,,\n무상보육 3~5세 지원|2027-0,17,무상보육 3~5세 지원,보조,2027-0,846720,0,0,846720,0,,\n무상보육 3~5세 추가 지원|2027-0,18,무상보육 3~5세 추가 지원,보조,2027-0,201600,0,0,201600,0,,\n교사대아동비율개선(보육료)|2027-0,19,교사대아동비율개선(보육료),보조,2027-0,997763,0,648546,174609,174608,,\n아동기본수당(가정보육가산금)|2027-0,20,아동기본수당(가정보육가산금),보조,2027-0,275124,0,178830,48147,48147,,","compare":"no,name,type,gn2026,req2026_4,gn2027,req2027,status,note\n1,외국인 아동 차액 보육료 지원(자체),자체,,312000,,312000,자체사업,시비 자체사업(내시 없음)\n2,급식위생관리 지원,보조,46528,46528,35316,35316,일치,\"가내시 '어린이집 운영 지원(국비)' 242,804 안에 포함(교재교구 41,052+차량 166,436+급식위생 35,316). 보조율 60/28/12→50/25/25\"\n3,어린이집 유아 급식비 지원,보조,815063,815063,809932,809932,일치,2026 4회추경 사업명 '선도교육청 어린이집 급식비 지원'\n4,\"어린이집 운영지원(급식비, 운영비)\",보조,403646,403646,605232,398044,차이,\"요구액이 2026년 금액 그대로. 가내시 대비 △207,188(도 △62,156, 시 △145,032). 가내시 재원 도 181,569 / 시 423,663\"\n5,어린이집 운영비 지원(0~2세),보조,77580,77580,,77580,가내시 미확인,이번 가내시 파일(여성가족국)에 없음. 재원 미확인\n6,영유아보육료,보조,10246961,10246961,11967644,11967644,일치,보조율 75/17.5/7.5→65/17.5/17.5\n7,외국인자녀 보육지원 사업,보조,317435,317435,,317435,가내시 미확인,이번 가내시 파일에 없음. 재원 미확인\n8,가정양육수당 지원,보조,101897,101897,93706,93706,일치,보조율 75/17.5/7.5→65/17.5/17.5\n9,누리과정 운영,보조,5073192,5073192,4509360,4509360,일치,\n10,누리과정차액보육료,보조,578524,578524,853764,853764,일치,도50/시50\n11,누리과정 3~5세 추가 지원,보조,706800,706800,604800,604800,일치,\n12,영아표준보육과정 프로그램 지원,보조,87000,87000,,87000,가내시 미확인,이번 가내시 파일에 없음. 재원 미확인\n13,부모급여,보조,7420189,7420189,6512971,6512971,일치,보조율 75/17.5/7.5→65/17.5/17.5\n14,유·보 활성화: 무상보육 3세 지원,자체,,237000,,49000,자체사업,시비 자체사업\n15,유·보 활성화: 다문화·외국인 특성화 어린이집,자체,,20000,,20000,자체사업,시비 자체사업\n16,무상보육 4~5세 지원,보조,547582,547582,,,통합,2027년부터 무상보육 3~5세 지원으로 통합\n17,무상보육 3~5세 지원,보조,,,846720,846720,일치,2027 신규(3세·4~5세 통합)\n18,무상보육 3~5세 추가 지원,보조,,,201600,201600,일치,2027 신규\n19,교사대아동비율개선(보육료),보조,,,997763,997763,일치,가내시 '국비' → 요구서 기금(기) 편성\n20,아동기본수당(가정보육가산금),보조,,,275124,275124,일치,가내시 '국비' → 요구서 기금(기) 편성","rates":"id,program,kind,from_m,to_m,amount,year_from,year_to,label\npg0_2023,부모급여,home,0,11,700000,2023,2023,부모급여 0세\npg1_2023,부모급여,home,12,23,350000,2023,2023,부모급여 1세\npg0,부모급여,home,0,11,1000000,2024,,부모급여 0세\npg1,부모급여,home,12,23,500000,2024,,부모급여 1세\npg0_dc_2024,부모급여,daycare,0,11,460000,2024,2024,부모급여 0세 (어린이집 차액)\npg1_dc_2024,부모급여,daycare,12,23,25000,2024,2024,부모급여 1세 (어린이집 차액)\npg0_dc,부모급여,daycare,0,11,416000,2026,,부모급여 0세 (어린이집 차액)\npg1_dc,부모급여,daycare,12,23,0,2026,,부모급여 1세 (어린이집 차액)\nys_gen,양육수당,general,24,85,100000,2023,,가정양육수당\nys_rural_1,양육수당,rural,24,35,156000,2023,,농어촌 양육수당 24~35개월\nys_rural_2,양육수당,rural,36,47,129000,2023,,농어촌 양육수당 36~47개월\nys_rural_3,양육수당,rural,48,85,100000,2023,,농어촌 양육수당 48~85개월\nys_dis_1,양육수당,disabled,24,35,200000,2023,,장애아동 양육수당 24~35개월\nys_dis_2,양육수당,disabled,36,85,100000,2023,,장애아동 양육수당 36~85개월"}</script>
+<style>
+:root{color-scheme:light;--ink:#182b29;--muted:#526561;--green:#14584f;--deep:#103a34;--line:#dde7e2;--soft:#edf6f1;--orange:#8b400c;--red:#a52739;--shadow:0 8px 24px #173c2b0a;font:16px/1.55 "Pretendard","Malgun Gothic",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:#fff}h1,h2,h3,p{margin:0}h1{font-size:clamp(2rem,5vw,3.65rem);line-height:1.12;letter-spacing:-.075em}h2{font-size:1.35rem;letter-spacing:-.04em}h3{font-size:1.05rem;letter-spacing:-.03em}button,select,input{font:inherit;color:inherit}button,a,summary{cursor:pointer}a{text-decoration:none;color:inherit}button{background:white;border:1px solid var(--line);border-radius:8px;padding:8px 13px}button:hover{border-color:#7fb3a6}button[aria-pressed=true]{background:var(--deep);border-color:var(--deep);color:#fff}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #338675;outline-offset:3px}svg{width:23px;height:23px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.top{border-bottom:1px solid var(--line)}.top-inner,.wrap{width:min(calc(100% - 48px),1160px);margin:auto}.top-inner{display:flex;align-items:center;min-height:66px;gap:10px;color:var(--deep);font-weight:800}.top-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--soft)}.top-icon svg{width:19px;height:19px}.wrap{padding:34px 0 55px}.hero{position:relative;overflow:hidden;isolation:isolate;min-height:242px;display:flex;flex-direction:column;justify-content:center;gap:13px;background:#e6f3eb;border:1px solid #d7e9dd;border-radius:18px;padding:34px;color:var(--deep)}.hero::after{content:"";position:absolute;z-index:-1;inset:-40% -9% -65% 43%;background:repeating-radial-gradient(ellipse at 80% 78%,transparent 0 22px,#6da89545 23px 24px,transparent 25px 37px);transform:rotate(-12deg);mask-image:linear-gradient(110deg,transparent,#000 46%)}.hero p,.muted{color:var(--muted)}.hero.compact{min-height:140px;padding:24px 28px;margin:10px 0 24px}.hero.compact h1{font-size:clamp(1.7rem,4vw,2.6rem)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}.tile,.panel,.project,.metric{border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow)}.tile{padding:23px;display:flex;flex-direction:column;gap:9px;min-height:201px}.tile:hover{border-color:#86b9aa;background:#fcfefc}.tile-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:10px;background:var(--soft);color:var(--green);margin-bottom:5px}.tile:nth-child(2) .tile-icon{background:#e9eefb;color:#3d5081}.tile:nth-child(3) .tile-icon{background:#f1eef6;color:#614d77}.tile p{color:var(--muted);font-size:.9375rem}.tile strong{margin-top:auto;padding-top:9px;font-size:.9rem;color:var(--green)}.back{display:inline-block;color:var(--green);font-weight:700;padding:4px 0}.back:hover{text-decoration:underline}
+.tabs,.periods,.legend{display:flex;gap:8px;flex-wrap:wrap}.tabs{margin-bottom:18px}.periods{margin-bottom:8px}.badge,.pill{display:inline-block;border-radius:6px;font-size:.875rem;font-weight:700;padding:3px 7px;background:#e9f3ed;color:#235c49}.badge{margin-left:5px;background:#ffefd9;color:#784008}.pill.red{color:var(--red);background:#ffe9ee}.pill.orange{color:var(--orange);background:#fff0da}.pill.gray{color:#485755;background:#edf0ef}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(143px,1fr));gap:8px;margin:16px 0}.metric{padding:12px 14px}.metric span{display:block;color:var(--muted);font-size:.875rem}.metric strong{display:block;font-size:clamp(1.15rem,2.3vw,1.55rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.metric:first-child{background:var(--soft)}.list-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:19px 0 9px}.search,input:not([type=checkbox]),select{border:1px solid #cbdad3;border-radius:8px;background:#fff;padding:8px 10px;min-width:0;max-width:100%}.projects{display:grid;gap:9px}.project{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;padding:16px 18px}.project h3{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.number,.unit,.delta,.fine{font-size:.875rem;color:var(--muted)}.amount{font-size:1.6rem;font-weight:800;margin-top:5px;letter-spacing:-.04em}.down{color:var(--red)}.up{color:#135847}.notice{color:var(--orange);background:#fff5e6;border-radius:8px;padding:9px 12px}.funding{align-self:center}.bar{display:flex;height:9px;overflow:hidden;border-radius:10px;background:#edf1ef;margin:4px 0 8px}.fund-grid{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:5px}.fund-cell{border-left:3px solid var(--fund);padding-left:6px}.fund-cell span{display:block;font-size:.8125rem;color:var(--muted)}.fund-cell strong{font-size:clamp(.86rem,1.6vw,1.14rem);font-variant-numeric:tabular-nums}.exec{grid-column:1/-1;display:flex;align-items:center;gap:10px;font-size:.875rem;color:var(--muted);margin-top:-8px}.exec progress{flex:1;accent-color:var(--green);height:9px;min-width:40px}
+.system-table th:last-child,.system-table td:last-child{width:105px}.system-rules td:first-child{font-weight:700}
+.subnav a{border:1px solid var(--line);border-radius:8px;padding:8px 13px}.subnav a:hover{border-color:#7fb3a6}.subnav a[aria-current="page"]{background:var(--deep);border-color:var(--deep);color:#fff}
+.grant-steps{margin:8px 0 0;padding-left:25px}.grant-steps li{padding:5px 0}.grant-steps strong{color:var(--deep);font-weight:800}
+.maintenance-step{margin-top:8px;background:#f8fbf9}.maintenance-step ol{margin:10px 0 3px;padding-left:24px}.maintenance-step li+li{margin-top:5px}
+.panel{padding:17px 19px;margin:12px 0}.panel h2{margin-bottom:8px}.scroll{overflow:auto;border:1px solid var(--line);border-radius:8px;max-width:100%}.scroll:focus-visible{outline-offset:1px}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.9375rem}th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f3f8f5;color:var(--deep);white-space:nowrap}tbody tr:last-child td{border-bottom:0}td.num{text-align:right;white-space:nowrap}.compare{min-width:810px}.row-red{background:#fff3f5}.row-orange{background:#fff8ed}.note-cell{min-width:190px}.criteria{margin-top:17px;border:1px solid var(--line);border-radius:9px;padding:11px 14px}.criteria summary{color:var(--green);font-weight:750}.criteria ul{margin:8px 0 1px;padding-left:22px}.empty{padding:26px 14px;text-align:center;color:var(--muted);background:#f6f9f7;border-radius:9px}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px 14px}.fields label{display:grid;gap:4px;font-size:.9rem;font-weight:700}.fields .check{display:flex;align-items:center;gap:8px;align-self:end;min-height:43px}.check input{width:18px;height:18px;accent-color:var(--green)}.month-now{background:#e8f2ed;padding:11px 13px;border-radius:9px;margin:12px 0;color:var(--deep);font-weight:700}.calendar{min-width:1000px;table-layout:fixed}.calendar th,.calendar td{text-align:center;padding:5px 3px}.calendar th:first-child{width:64px}.calendar th:last-child{width:123px}.calendar td{border:2px solid white}.calendar td > span{display:block;font-size:.8rem}.calendar td > strong{font-size:.94rem}.calendar .pg0,.legend .pg0{--tone:#badbca;--tint:#e9f6ee}.calendar .pg1,.legend .pg1{--tone:#aec9ed;--tint:#eaf1fc}.calendar .ys,.legend .ys{--tone:#dcc3ec;--tint:#f5ebfb}.calendar .none,.legend .none{--tone:#c8d0ce;--tint:#f1f3f2}.calendar .pay{box-shadow:inset 0 3px var(--tone);background-color:var(--tint)}.calendar .off{background:#fafbfa;color:#b1bbb6}.calendar .daycare,.legend .daycare{background-image:repeating-linear-gradient(135deg,#ffffff00 0 5px,#28473b17 5px 7px)}.calendar .current{outline:3px solid var(--deep);outline-offset:-3px}.legend{margin:0 0 9px;font-size:.875rem}.legend span{background-color:var(--tint,#f2f5f3);border-top:3px solid var(--tone,#bacac2);border-radius:4px;padding:2px 7px}.segments{min-width:680px}.segments .pill{margin-left:4px}
+@media(max-width:730px){.tiles{grid-template-columns:1fr;gap:10px;margin-top:13px}.tile{min-height:0;padding:16px;display:grid;grid-template-columns:44px 1fr;column-gap:12px;row-gap:3px}.tile-icon{grid-row:1/4;margin:0}.tile strong{padding-top:4px}.project{grid-template-columns:1fr;gap:12px}.exec{margin-top:0}.fields{grid-template-columns:repeat(2,minmax(0,1fr))}.tile h2{font-size:1.18rem}}
+@media(max-width:430px){.top-inner,.wrap{width:calc(100% - 24px)}.top-inner{min-height:52px}.wrap{padding-top:16px}.hero{padding:20px;min-height:180px}.hero.compact{padding:15px;margin-bottom:14px;min-height:105px}.panel{padding:11px}.project{padding:12px}.periods button,.tabs button{font-size:.875rem;padding:7px 9px}.fund-grid{gap:2px}.fund-cell{padding-left:4px}.fields{gap:9px}.fields input,.fields select{width:100%;padding:6px 5px;font-size:.9rem}}
+.calendar td > span[hidden]{display:none}
+@media(min-width:731px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1060px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><span class="top-icon" id="brand-icon"></span><a href="#home">보육 업무 수첩</a></div></header>
+<main class="wrap" id="app"></main>
+<script>
+'use strict';
+function parseCSV(csv){
+ const rows=[];let row=[],field='',quoted=false;
+ for(let i=0;i<csv.length;i++){
+  const ch=csv[i];
+  if(ch==='"'){if(quoted&&csv[i+1]==='"'){field+='"';i++;}else quoted=!quoted;}
+  else if(ch===','&&!quoted){row.push(field);field='';}
+  else if(ch==='\n'&&!quoted){row.push(field.replace(/\r$/,''));rows.push(row);row=[];field='';}
+  else field+=ch;
+ }
+ if(row.length||field){row.push(field.replace(/\r$/,''));rows.push(row);}
+ const headers=rows.shift();headers[0]=headers[0].replace(/^\uFEFF/,'');
+ return rows.filter(cells=>cells.some(Boolean)).map(cells=>Object.fromEntries(headers.map((key,i)=>[key,cells[i]??''])));
+}
+const source=JSON.parse(document.getElementById('source-data').textContent);
+const periods=parseCSV(source.periods),compare=parseCSV(source.compare),rates=parseCSV(source.rates);
+const app=document.getElementById('app');
+const icons={
+ book:'<rect x="5" y="3" width="15" height="18" rx="2"/><path d="M9 3v18M3 7h4M3 12h4M3 17h4m9-9h5m-5 4h5"/>',
+ budget:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 16v-4m5 4V8m5 8V6"/>',
+ pay:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18m-13 5h2m3 0h3m-8 3h2"/>',
+ haengbok:'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M8 8h8m-8 4h5"/>',
+ childcare:'<path d="m3 10 9-7 9 7M5 9v11h14V9m-9 11v-5h4v5"/>'
+};
+const svg=name=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[name]+'</svg>';
+document.getElementById('brand-icon').innerHTML=svg('book');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const present=value=>value!==''&&value!=null;
+const nf=new Intl.NumberFormat('ko-KR');
+const fmt=n=>(n<0?'△':'')+nf.format(Math.abs(n));
+const pct=n=>new Intl.NumberFormat('ko-KR',{maximumFractionDigits:1}).format(n)+'%';
+const amount=value=>present(value)?fmt(Number(value)):'—';
+const sum=(rows,key)=>rows.reduce((total,row)=>total+Number(row[key]),0);
+const ordered=rows=>rows.slice().sort((a,b)=>Number(a.no)-Number(b.no));
+const funding=[
+ {key:'gook',label:'국비',color:'#43877a'},{key:'gigeum',label:'기금',color:'#7966a1'},
+ {key:'do',label:'도비',color:'#557eb5'},{key:'si',label:'시비',color:'#bf8154'}
+];
+const periodInfo={
+ '2026-3':['2026년 3회 추경','합본예산서(3회추경까지 반영) 기준입니다.'],
+ '2026-4':['2026년 4회 추경','4회추경 예산요구서(변경내시 반영) 기준입니다.','2026-3'],
+ '2027-0':['2027년 본예산','세출예산요구서(가내시 반영) 기준입니다.','2026-4'],
+ '2027-1':['2027년 1회 추경','아직 편성 전입니다. 1회추경 요구액이 나오면 이곳에 채워집니다.','2027-0']
+};
+const checkCount=compare.filter(row=>['차이','가내시 미확인'].includes(row.status)).length;
+const metric=(label,value,detail='')=>'<div class="metric"><span>'+label+'</span><strong>'+value+'</strong>'+(detail?'<span>'+detail+'</span>':'')+'</div>';
+const pill=(label,tone='')=>'<span class="pill '+tone+'">'+esc(label)+'</span>';
+const panel=(title,content)=>'<section class="panel"><h2>'+title+'</h2>'+content+'</section>';
+const hero=(title,description,compact=false)=>'<section class="hero '+(compact?'compact':'')+'"><h1>'+title+'</h1><p>'+description+'</p></section>';
+const back='<a class="back" href="#home">← 업무 수첩</a>';
+const empty=message=>'<p class="empty">'+message+'</p>';
+const details=(label,items)=>'<details class="criteria"><summary>'+label+'</summary><ul>'+items.map(item=>'<li>'+item+'</li>').join('')+'</ul></details>';
+const budgetNotes=[
+ '2026년 3회 추경은 합본예산서, 2026년 4회 추경은 4회추경 예산요구서, 2027년 본예산은 세출예산요구서 기준입니다. 2027년 1회 추경은 편성 전입니다.',
+ '재원별 금액은 원자료에 있거나 도비 100%, 시비 100%, 도비·시비 50:50처럼 비율로 구분되는 사업만 반영했습니다.',
+ '2027년부터 영유아보육료·가정양육수당·부모급여의 국비·도비·시비 보조율은 75 / 17.5 / 7.5에서 65 / 17.5 / 17.5로, 급식위생관리는 60 / 28 / 12에서 50 / 25 / 25로 바뀝니다.',
+ '교사대아동비율개선(보육료)과 아동기본수당(가정보육가산금)의 국비는 기금으로 편성합니다.',
+ '무상보육 4~5세 지원은 2027년부터 무상보육 3~5세 지원으로 통합됩니다.'
+];
+const payNotes=[
+ '월 단위로 계산합니다. 부모급여는 출생월부터 월령 23개월까지이며 2023년부터 적용합니다. 첫 생일이 속한 달부터 1세 단가를 적용합니다.',
+ '가정양육수당은 월령 24개월부터 취학하는 해의 2월까지, 최대 월령 85개월까지 계산합니다. 취학을 유예하면 월령 85개월까지 적용합니다.',
+ '출생일을 포함하여 60일이 지난 뒤 신청하면 신청월부터 지급하도록 계산합니다.',
+ '부모급여(현금) 첫 정기지급은 15일까지 신청하면 신청월, 16일 이후 신청하면 다음 달로 예상합니다. 출생월 등 앞선 달의 소급분과 정기지급월분을 구분해 표시합니다. 자격 결정 시점과 수시지급 여부에 따라 실제 지급월은 달라질 수 있습니다.',
+ '어린이집 시작월부터 종료월까지 부모급여는 현금 차액만 표시하고, 가정양육수당은 0원으로 표시합니다. 종료월을 비우면 계속 이용으로 계산합니다.',
+ '적용 연도와 월령에 맞는 단가를 찾고 자료에 단가가 없는 달은 합계에서 제외합니다.',
+ '지급일은 매월 25일(토·공휴일이면 전날)이며, 어린이집 이용 시 부모급여 차액은 다음 달 20일입니다. 실제 지급액은 행복e음 결정 내역으로 확인합니다.'
+];
+let tab='status',period='2027-0',query='';
+const payState={birth:'',apply:'',start:'',end:'',kind:'general',defer:false};
+function home(){
+ const tiles=[
+  ['budget','예산 관리','추경·본예산별 담당사업 예산 · 재원 · 가내시 비교','2027 본예산 '+(sum(compare,'req2027')/100000).toFixed(1)+'억원 · 확인 필요 '+checkCount+'건'],
+  ['pay','부모급여 및 양육수당','부모급여 · 가정양육수당 업무','급여 지급 계산기'],
+  ['haengbok','행복e음','메뉴 코드 · 해외체류 지급정지 · 인적변동 정비',''],
+  ['childcare','보육통합정보시스템','준비 중','']
+ ];
+ return hero('보육 업무 수첩','포천시 교육정책과 · 보육 업무')+'<nav class="tiles" aria-label="업무 선택">'+tiles.map(([key,title,desc,meta])=>'<a class="tile" href="#'+key+'"><span class="tile-icon">'+svg(key)+'</span><h2>'+title+'</h2><p>'+desc+'</p>'+(meta?'<strong>'+meta+'</strong>':'')+'</a>').join('')+'</nav>';
+}
+const funded=row=>funding.every(({key})=>present(row[key]));
+function project(row,previous){
+ const [,,prevPeriod]=periodInfo[row.period];
+ const diff=previous?Number(row.amount)-Number(previous.amount):0;
+ const delta=!prevPeriod?'':!previous?esc(periodInfo[prevPeriod][0])+'에 없던 사업':diff===0?'변동 없음':esc(periodInfo[prevPeriod][0])+' 대비 '+(diff>0?'+':'')+fmt(diff)+'천원';
+ const fundItems=funding.filter(item=>item.key!=='gigeum'||Number(row.gigeum)>0);
+ const portion=item=>Number(row.amount)?100*Number(row[item.key])/Number(row.amount):0;
+ let funds;
+ if(funded(row)){
+  funds='<div class="bar" aria-hidden="true">'+fundItems.map(item=>'<span style="width:'+portion(item)+'%;background:'+item.color+'"></span>').join('')+'</div><div class="fund-grid">'+fundItems.map(item=>'<div class="fund-cell" style="--fund:'+item.color+'"><span>'+item.label+'</span><strong>'+amount(row[item.key])+'</strong><span>'+pct(portion(item))+'</span></div>').join('')+'</div>';
+ }else{
+  funds=row.period.startsWith('2027')?'<p class="notice fine">재원 미확인 · 이번 가내시 파일에 없음</p>':'<p class="fine">재원별 금액 자료 없음</p>';
+ }
+ const execRate=Number(row.amount)?100*Number(row.exec)/Number(row.amount):0;
+ const exec=row.period.startsWith('2027')?'<div class="exec"><strong>집행</strong><progress aria-label="집행률" max="100" value="'+Math.min(100,Math.max(0,execRate))+'"></progress><span>'+(present(row.exec)?pct(execRate)+(row.execAsOf?' · '+esc(row.execAsOf):''):'미입력')+'</span></div>':'';
+ return '<article class="project"><div><h3><span class="number">'+esc(row.no)+'</span>'+esc(row.name)+(row.type==='자체'?pill('자체','gray'):'')+'</h3><div class="amount">'+amount(row.amount)+' <span class="unit">천원</span></div>'+(delta?'<p class="delta '+(diff<0?'down':diff>0?'up':'')+'">'+delta+'</p>':'')+'</div><div class="funding">'+funds+'</div>'+exec+'</article>';
+}
+function renderProjects(){
+ const rows=ordered(periods.filter(row=>row.period===period));
+ const previous=new Map(periods.filter(row=>row.period===periodInfo[period][2]).map(row=>[row.name,row]));
+ const visible=rows.filter(row=>row.name.toLowerCase().includes(query.trim().toLowerCase()));
+ document.getElementById('project-list').innerHTML=visible.length?visible.map(row=>project(row,previous.get(row.name))).join(''):empty(rows.length?'검색 결과가 없습니다.':periodInfo[period][1]);
+}
+function statusPane(){
+ const [title,desc]=periodInfo[period];
+ const rows=periods.filter(row=>row.period===period);
+ const known=rows.filter(funded),missing=rows.filter(row=>!funded(row));
+ const cards=rows.length?'<div class="summary">'+metric('합계',fmt(sum(rows,'amount')))+funding.filter(item=>item.key!=='gigeum'||sum(known,item.key)>0).map(item=>metric(item.label,fmt(sum(known,item.key)))).join('')+(missing.length?metric('재원 자료 없음',fmt(sum(missing,'amount'))):'')+'</div>':'';
+ return '<div class="periods" aria-label="예산 시기">'+Object.entries(periodInfo).map(([id,[label]])=>'<button type="button" data-period="'+id+'" aria-pressed="'+(id===period)+'">'+label+'</button>').join('')+'</div><p class="muted">'+desc+'</p>'+cards+'<div class="list-head"><h2>'+title+' 사업 <span class="unit">(천원)</span></h2><input class="search" id="project-search" type="search" aria-label="사업명 검색" placeholder="사업명 검색" value="'+esc(query)+'"></div><div class="projects" id="project-list"></div>';
+}
+const currentStatus={
+ '일치':['가내시와 일치',''],'차이':['가내시와 차이','red'],'가내시 미확인':['가내시 미확인','orange'],
+ '자체사업':['자체사업','gray'],'통합':['3~5세로 통합','gray']
+};
+function table(labels,body,style,description){
+ return '<div class="scroll" tabindex="0" role="region" aria-label="'+description+'"><table class="'+style+'"><thead><tr>'+labels.map(label=>'<th scope="col">'+label+'</th>').join('')+'</tr></thead><tbody>'+body+'</tbody></table></div>';
+}
+function comparison(isCurrent){
+ const labels=isCurrent?['사업명','2027 가내시','2027 본예산 요구액','요구 − 가내시','상태','비고']:['사업명','2026 변경내시','2026 4회추경','4회추경 − 변경내시','상태'];
+ const name=isCurrent?'2027 본예산 ↔ 2027 가내시':'2026 4회추경 ↔ 2026 변경내시';
+ const request=isCurrent?'req2027':'req2026_4',notice=isCurrent?'gn2027':'gn2026';
+ const body=ordered(compare.filter(row=>present(row[request]))).map(row=>{
+  const has=present(row[notice]),own=row.type==='자체',diff=has?Number(row[request])-Number(row[notice]):null;
+  const [label,tone]=isCurrent?(currentStatus[row.status]??[row.status,'gray']):!has?[own?'자체사업':'변경내시 없음',own?'gray':'orange']:diff===0?['변경내시와 일치','']:['변경내시와 차이','red'];
+  const display=has?amount(row[notice]):own?'해당 없음(자체)':isCurrent?'파일에 없음':'자료 없음';
+  return '<tr class="row-'+tone+'"><td>'+esc(row.name)+'</td><td class="num">'+display+'</td><td class="num">'+amount(row[request])+'</td><td class="num">'+amount(diff)+'</td><td>'+pill(label,tone)+'</td>'+(isCurrent?'<td class="note-cell">'+esc(row.note||'—')+'</td>':'')+'</tr>';
+ }).join('');
+ return panel(name+' <span class="unit">(천원)</span>',table(labels,body,'compare',name));
+}
+function budget(){
+ app.innerHTML=back+hero('예산 관리','시기별 담당사업 예산과 가내시 차이를 확인합니다.',true)+'<div class="tabs" aria-label="예산 화면"><button data-tab="status" aria-pressed="'+(tab==='status')+'">예산 현황</button><button data-tab="compare" aria-pressed="'+(tab==='compare')+'">가내시 비교 <span class="badge">'+checkCount+'건 확인 필요</span></button></div>'+(tab==='status'?statusPane():comparison(true)+comparison(false))+details('자료 기준과 참고사항',budgetNotes);
+ if(tab==='status'){
+  renderProjects();
+  document.getElementById('project-search').addEventListener('input',event=>{query=event.target.value;renderProjects();});
+ }
+}
+const monthNo=value=>{const [y,m]=value.split('-').map(Number);return y*12+m-1;};
+const yearOf=i=>Math.floor(i/12);
+const monthOf=i=>i%12+1;
+const monthLabel=i=>yearOf(i)+'.'+String(monthOf(i)).padStart(2,'0');
+const periodLabel=(a,b)=>monthLabel(a)+' ~ '+monthLabel(b);
+const currentMonth=()=>monthNo(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit'}).formatToParts(new Date()).filter(part=>['year','month'].includes(part.type)).sort((a,b)=>a.type==='year'?-1:1).map(part=>part.value).join('-'));
+function calculate({birth,apply,start,end,kind,defer}){
+ const b=monthNo(birth),limit=defer?b+85:Math.min(b+85,(yearOf(b)+7)*12+1);
+ const deadline=new Date(Date.parse(birth+'T00:00:00Z')+59*86400000).toISOString().slice(0,10);
+ const late=Boolean(apply&&apply>deadline),firstPay=late?monthNo(apply):b;
+ const startAt=start?monthNo(start):Infinity,endAt=end?monthNo(end):Infinity;
+ const rows=[];
+ for(let i=b;i<=limit;i++){
+  const age=i-b,parent=age<24,program=parent?'부모급여':'양육수당';
+  const daycare=i>=startAt&&i<=endAt;
+  let rate=null,label='',value=null;
+  if(parent&&yearOf(i)<2023)label='부모급여 도입 전';
+  else if(i<firstPay)label='미지급(신청 전)';
+  else if(daycare&&!parent){label='어린이집 이용 · 현금 없음';value=0;}
+  else{
+   const kindForMonth=parent?(daycare?'daycare':'home'):kind;
+   rate=rates.find(row=>row.program===program&&row.kind===kindForMonth&&age>=Number(row.from_m)&&age<=Number(row.to_m)&&yearOf(i)>=Number(row.year_from)&&(!row.year_to||yearOf(i)<=Number(row.year_to)));
+   label=rate?.label??'단가 미등록';
+   if(rate)value=Number(rate.amount);
+  }
+  rows.push({i,age,program,daycare,label,value,rate:rate?.id??null,tone:rate?(parent?(age<12?'pg0':'pg1'):'ys'):'none'});
+ }
+ return {rows,late,deadline};
+}
+function payCalendar(rows,now,firstPayment){
+ const byMonth=new Map(rows.map(row=>[row.i,row]));
+ const moved=new Set(firstPayment?.installments.filter(row=>row.i<firstPayment.firstMonth).map(row=>row.i));
+ const firstMonth=firstPayment?.firstMonth;
+ const retroTotal=moved.size?sum(firstPayment.installments.filter(row=>moved.has(row.i)),'value'):0;
+ const cashLabel=value=>value===null?'—':value===0?'0원':new Intl.NumberFormat('ko-KR',{maximumFractionDigits:4}).format(value/10000)+'만';
+ let html='';
+ for(let year=yearOf(rows[0].i);year<=yearOf(rows.at(-1).i);year++){
+  const cells=[];let total=0;
+  for(let m=0;m<12;m++){
+   const i=year*12+m,row=byMonth.get(i);
+   if(!row){cells.push('<td class="off">—</td>');continue;}
+   const shifted=moved.has(i);
+   const combined=i===firstMonth&&moved.size>0;
+   const value=shifted?null:combined?(row.value??0)+retroTotal:row.value;
+   total+=value??0;
+   const destination=yearOf(i)===yearOf(firstMonth)?monthOf(firstMonth)+'월':monthLabel(firstMonth);
+   const label=monthLabel(i)+' · '+row.age+'개월 · '+row.label+(shifted?' · '+destination+' 지급 예상':value===null?'':' · '+fmt(value)+'원');
+   const breakdown=combined?firstPayment.installments.map(part=>{
+    const month=yearOf(part.i)===year?monthOf(part.i)+'월':monthLabel(part.i);
+    return '<span>'+month+(part.i<firstMonth?' 소급 ':' 당월 ')+cashLabel(part.value)+'</span>';
+   }).join(''):'';
+   const other=combined&&row.daycare&&row.value>0?'<span>어린이집 '+cashLabel(row.value)+'</span>':'';
+   const detail=shifted?'<span>'+destination+' 지급</span>':combined?breakdown+other:'<span>'+(row.daycare?'어린이집':row.age+'개월')+'</span>';
+   const cellClass=shifted?'none':combined&&!row.rate?firstPayment.installments[0].tone:row.tone;
+   cells.push('<td class="pay '+cellClass+(row.daycare?' daycare':'')+(i===now?' current':'')+'" title="'+esc(label)+'"><strong>'+cashLabel(value)+'</strong>'+detail+'<span hidden>'+esc(row.label)+'</span></td>');
+  }
+  html+='<tr><th scope="row">'+year+'</th>'+cells.join('')+'<td class="num"><strong>'+fmt(total)+'원</strong></td></tr>';
+ }
+ const legend='<div class="legend"><span class="pg0">부모급여 0세</span><span class="pg1">부모급여 1세</span><span class="ys">가정양육수당</span><span class="none">미지급·해당 없음</span><span class="daycare">어린이집 이용</span></div>';
+ const timing=moved.size?'<p class="fine">부모급여(현금) 소급분은 첫 정기지급 예상월에 합산했습니다.</p>':'';
+ return panel('월별 지급 달력',timing+legend+table(['연도',...Array.from({length:12},(_,i)=>(i+1)+'월'),'연간 합계'],html,'calendar','월별 지급 달력'));
+}
+function segments(rows,now){
+ const groups=[];
+ for(const row of rows){
+  const last=groups.at(-1);
+  if(last&&last.program===row.program&&last.label===row.label&&last.value===row.value&&last.daycare===row.daycare&&last.rate===row.rate){last.end=row;last.count++;}
+  else groups.push({...row,end:row,count:1});
+ }
+ const body=groups.map(g=>'<tr><td>'+esc(g.label)+(now>=g.i&&now<=g.end.i?pill('이번 달'):'')+'</td><td>'+periodLabel(g.i,g.end.i)+'</td><td>'+g.age+'~'+g.end.age+'개월</td><td>'+g.count+'개월</td><td class="num">'+(g.value===null?'—':fmt(g.value)+'원')+'</td><td class="num">'+(g.value===null?'—':fmt(g.value*g.count)+'원')+'</td></tr>').join('');
+ return panel('구간별 정리',table(['구분','기간','월령','개월 수','월 지급액','소계'],body,'segments','구간별 정리'));
+}
+function firstParentPayment(rows,applicationDate){
+ if(!applicationDate)return null;
+ const firstMonth=monthNo(applicationDate)+(Number(applicationDate.slice(-2))>15?1:0);
+ const installments=rows.filter(row=>row.program==='부모급여'&&!row.daycare&&row.i<=firstMonth&&row.value>0);
+ return installments.length?{firstMonth,installments,total:sum(installments,'value')}:null;
+}
+function firstParentPaymentPanel(payment){
+ if(!payment)return '';
+ const {firstMonth,installments,total}=payment;
+ const lines=installments.map(row=>'<tr><td>'+monthLabel(row.i)+'분</td><td>'+(row.i<firstMonth?'소급분':'당월분')+'</td><td class="num">'+fmt(row.value)+'원</td></tr>').join('');
+ const breakdown=table(['급여 귀속월','지급 구분','금액'],lines,'system-rules','부모급여 첫 정기지급 내역');
+ return panel('부모급여 첫 정기지급 예상','<p class="month-now">'+monthLabel(firstMonth)+' 지급 예상 · 합계 '+fmt(total)+'원</p>'+breakdown+'<p class="fine">자격 결정 시점과 수시지급 여부에 따라 실제 지급월은 달라질 수 있습니다.</p>');
+}
+function renderPay(){
+ const result=document.getElementById('pay-result');
+ if(!payState.birth){result.innerHTML=empty('생년월일을 넣으면 지급 기간과 금액이 나옵니다.');return;}
+ if(payState.apply&&payState.apply<payState.birth){result.innerHTML='<p class="notice">신청일은 생년월일 이후로 입력해 주세요.</p>';return;}
+ if(payState.end&&(!payState.start||payState.end<payState.start)){result.innerHTML='<p class="notice">어린이집 이용 시작월과 종료월을 확인해 주세요.</p>';return;}
+ const {rows,late,deadline}=calculate(payState),now=currentMonth(),current=rows.find(row=>row.i===now);
+ const firstPayment=firstParentPayment(rows,payState.apply);
+ const payment=current?.value!=null?fmt(current.value)+'원':current?.label==='단가 미등록'?'단가 미등록':'지급 없음';
+ const nowText='오늘('+monthLabel(now)+') 기준 '+(current?current.age+'개월 · 이번 달 '+payment+(current.label===payment?'':' ('+esc(current.label)+')'):'지급 대상 기간 외');
+ const groupMetric=(label,program)=>{
+  const group=rows.filter(row=>row.program===program&&row.rate!==null);
+  const desc=group.length?periodLabel(group[0].i,group.at(-1).i)+' · '+group.length+'개월':'지급 기간 없음';
+  return metric(label,fmt(sum(group,'value'))+'원',desc);
+ };
+ result.innerHTML='<div class="month-now">'+nowText+'</div>'+(late?'<p class="notice">신청일이 출생일 포함 60일('+deadline+')을 넘어 신청한 달부터 지급합니다.</p>':'')+firstParentPaymentPanel(firstPayment)+'<div class="summary">'+groupMetric('부모급여','부모급여')+groupMetric('가정양육수당','양육수당')+metric('합계',fmt(sum(rows,'value'))+'원')+'</div>'+payCalendar(rows,now,firstPayment)+segments(rows,now);
+}
+function pay(){
+ const dateInput=(label,name,type,required=false)=>'<label>'+label+'<input type="'+type+'" name="'+name+'" value="'+esc(payState[name])+'"'+(required?' required':'')+'></label>';
+ const form='<form class="fields" id="pay-form">'+dateInput('생년월일','birth','date',true)+dateInput('신청일 (선택)','apply','date')+dateInput('어린이집 이용 시작 (선택)','start','month')+dateInput('어린이집 이용 종료 (선택)','end','month')+'<label>양육수당 구분<select name="kind"><option value="general">일반</option><option value="rural">농어촌</option><option value="disabled">장애아동</option></select></label><label class="check"><input type="checkbox" name="defer" '+(payState.defer?'checked':'')+'>취학 유예</label></form>';
+ app.innerHTML=back+hero('부모급여 및 양육수당','월별 지급액과 지급 기간을 확인합니다.',true)+panel('급여 지급 계산기',form)+'<div id="pay-result"></div>'+details('계산 기준',payNotes);
+ const fields=document.getElementById('pay-form');
+ fields.elements.kind.value=payState.kind;
+ fields.addEventListener('submit',event=>event.preventDefault());
+ fields.addEventListener('input',event=>{const input=event.target;payState[input.name]=input.type==='checkbox'?input.checked:input.value;renderPay();});
+ renderPay();
+}
+const grantProcedures=`
+  <section class="panel"><h2>부모급여(차액) 작업방법</h2>
+   <ol class="grant-steps">
+    <li>행복E음 - <strong>정기 및 수시급여 생성(11100)</strong></li>
+    <li>지급연월 설정, 급여구분: <strong>부모급여(차액)</strong></li>
+    <li><strong>수시</strong>버튼 누르고 조회</li>
+    <li><strong>지급예정일자 20일로 설정</strong>하고 생성버튼 누르기</li>
+    <li><strong>지급대상자 전부 다 선택 (다음 페이지 있는지 확인)</strong></li>
+    <li><strong>계좌입금 의뢰서</strong> 누르기- 첫번째 선택<strong>(급여&gt;급여지급내역관리&gt;계좌입금 의뢰서발행)</strong></li>
+    <li>급여구분: 부모급여(차액), <strong>지급일자: 2026-10-20 설정</strong></li>
+    <li><strong>미결재 대상자</strong> 숫자 누르기</li>
+    <li><strong>전자결재요청</strong></li>
+    <li>온나라 연계-공문<strong>"부모급여(차액) 지급 건의</strong>" -&gt;회계과 협조</li>
+    <li><strong>행복E음 - 지방재정시스템연계</strong></li>
+    <li><strong>E호조 - 복지급여품의등록</strong> -&gt; 세부사업: 부모급여</li>
+    <li><strong>지급예정일자:20일로 설정</strong>, 품의유형: 일반</li>
+    <li><strong>급여연계정보 - 영유아보육, 부모급여(차액)</strong></li>
+    <li><strong>임시저장</strong> 후, 대량계좌검증, <strong>공문이랑 붙임 저장해서 넣기</strong></li>
+    <li><strong>계좌검증 완료 후 품의승인요청</strong></li>
+   </ol>
+  </section>
+  <section class="panel"><h2>부모급여(현금) 작업방법</h2>
+   <ol class="grant-steps">
+    <li>행복E음 - <strong>정기 및 수시급여 생성(11100)</strong></li>
+    <li>지급연월 설정, 급여구분: <strong>부모급여(현금)</strong></li>
+    <li><strong>정기</strong>버튼 누르고 조회</li>
+    <li><strong>계좌입금 의뢰서</strong> 누르기- 첫번째 선택(<strong>급여&gt;급여지급내역관리&gt;계좌입금 의뢰서발행</strong>)</li>
+    <li>급여구분: 부모급여, 지급일자: 2026-10-25 설정</li>
+    <li><strong>미결재 대상자</strong> 숫자 누르기</li>
+    <li><strong>전자결재요청</strong></li>
+    <li><strong>온나라</strong> 연계-<strong>공문"부모급여 지급 건의"</strong> -&gt;회계과 협조</li>
+    <li><strong>행복E음 - 지방재정시스템연계</strong></li>
+    <li><strong>E호조 - 복지급여품의등록</strong> -&gt; 세부사업: 부모급여</li>
+    <li><strong>지급예정일자:25일로 설정</strong>, 품의유형: 일반</li>
+    <li><strong>급여연계정보</strong> - 영유아보육, 부모급여</li>
+    <li><strong>임시저장</strong> 후, 대량계좌검증, <strong>공문이랑 붙임파일 첨부</strong></li>
+    <li><strong>계좌검증 완료 후 품의승인요청</strong></li>
+   </ol>
+  </section>
+  <section class="panel"><h2>양육수당 작업방법</h2>
+   <ol class="grant-steps">
+    <li>행복E음 - <strong>정기 및 수시급여 생성(11100)</strong></li>
+    <li>지급연월 설정, 급여구분: <strong>양육수당, 농어촌양육수당, 장애아동양육수당</strong></li>
+    <li><strong>정기</strong>버튼 누르고 조회</li>
+    <li><strong>계좌입금 의뢰서</strong> 누르기- 첫번째 선택(<strong>급여&gt;급여지급내역관리&gt;계좌입금 의뢰서발행</strong>)</li>
+    <li>급여구분: 양육수당, 지급일자: 2026-10-25 설정</li>
+    <li><strong>미결재 대상자</strong> 숫자 누르기</li>
+    <li><strong>전자결재요청</strong></li>
+    <li><strong>온나라</strong> 연계-<strong>공문"양육수당 지급 건의"</strong> -&gt;회계과 협조</li>
+    <li><strong>행복E음 - 지방재정시스템연계</strong></li>
+    <li><strong>E호조 - 복지급여품의등록</strong> -&gt; 세부사업: 가정양육수당</li>
+    <li><strong>지급예정일자:25일로 설정</strong>, 품의유형: 일반</li>
+    <li><strong>급여연계정보</strong> - 영유아보육, 양육수당</li>
+    <li><strong>임시저장</strong> 후, 대량계좌검증, <strong>공문이랑 붙임파일 첨부</strong></li>
+    <li><strong>계좌검증 완료 후 품의승인요청</strong></li>
+   </ol>
+  </section>
+ `;
+function haengbok(active='haengbok'){
+ const links=[['haengbok','메뉴 코드'],['haengbok-guidance','급여·정비 기준'],['haengbok-grants','보조금 생성']];
+ const tabs='<nav class="tabs subnav" aria-label="행복e음 하위 메뉴">'+links.map(([id,label])=>'<a href="#'+id+'"'+(id===active?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+ const heading=back+hero('행복e음','메뉴 코드와 급여 처리·정비 기준을 확인합니다.',true)+tabs;
+ if(active==='haengbok-grants'){
+  app.innerHTML=heading+grantProcedures;
+  return;
+ }
+ if(active==='haengbok'){
+  const menus=[
+   ['계좌변경신청내역조회','33500'],
+   ['정기 및 수시급여 생성현황','11100'],
+   ['환수대상자 관리','24230'],
+   ['환수상계내역 조회 및 처리','24420'],
+   ['개인별급여지급내역','33100']
+  ];
+  const menuRows=menus.map(([name,code])=>'<tr><td>'+esc(name)+'</td><td>'+esc(code)+'</td></tr>').join('');
+  app.innerHTML=heading+panel('행복e음 메뉴',table(['메뉴명','메뉴 코드'],menuRows,'system-table','행복e음 메뉴 코드'));
+  return;
+ }
+ const rules=[
+  ['중지','기본보육, 누리, 유아학비','변동일자 당월','대상자 신청 필요'],
+  ['정지','양육수당, 부모급여','변동일자 다음 달','담당자 직권 처리 가능']
+ ];
+ const ruleRows=rules.map(row=>'<tr>'+row.map(value=>'<td>'+esc(value)+'</td>').join('')+'</tr>').join('');
+ const procedures=[
+  {
+   "title": "출입국만료보장중지대상",
+   "steps": [
+    "이름 클릭 - 변동사항 반영 체크하고 이동",
+    "돋보기 클릭하여 아동 이름 선택",
+    "직권등록 > 사유 - 보장내역변경",
+    "보장결정요청(하단) - 가구원이름 선택 - 결정상태: 중지로 변경, 중지일자 변경, 사유: 해외체류(90일 이상) 변경",
+    "전자결재요청",
+    "통합상담관리 작성 - 대상자: 아동이름으로 바꾸고 작성"
+   ]
+  },
+  {
+   "title": "출입국만료보장정지대상",
+   "steps": [
+    "이름 클릭 - 변동사항 반영 체크하고 이동",
+    "돋보기 클릭하여 아동 이름 선택",
+    "직권등록 > 사유 - 보장내역변경",
+    "보장정보탭 - 가구원 이름 선택 - 상태: 급여정지로 변경, 종료일자 변경, 사유: 해외체류90일이상으로 변경",
+    "저장 후 직권등록완료",
+    "통합상담관리 작성 - 대상자: 아동이름으로 바꾸고 작성"
+   ]
+  },
+  {
+   "title": "출입국만료재책정대상",
+   "steps": [
+    "양육수당: 어린이집 재원 시 지급 불가하므로 보육통합시스템 통해 재원여부확인",
+    "이름 클릭 - 변동사항 반영 체크하고 이동",
+    "돋보기 클릭하여 아동 이름 선택",
+    "직권등록 > 사유 - 보장내역변경",
+    "보장정보탭 - 가구원 이름 선택 - 상태: 지원중으로 변경, 종료일자:9999-12-31로 변경, 사유: 기타로변경",
+    "저장 후 직권등록완료",
+    "통합상담관리 작성- 대상자: 아동이름으로 바꾸고 작성"
+   ]
+  }
+ ];
+ const procedureCards=procedures.map(({title,steps})=>'<details class="criteria maintenance-step"><summary>'+esc(title)+'</summary><ol>'+steps.map(step=>'<li>'+esc(step)+'</li>').join('')+'</ol></details>').join('');
+ const maintenance=panel('행복e음 정비방법','<p class="muted">변동집계현황 → 인적변동</p>'+procedureCards);
+ const suspensionStart='국외 체류기간이 90일이 되는 날이 속하는 달의 다음 달';
+ const suspensionRows=[
+  ['양육수당',suspensionStart,'입국일이 속한 달부터'],
+  ['부모급여',suspensionStart,'입국일이 속한 달의 다음 달부터'],
+  ['유아학비','해외체류 기간이 31일째 되는 날','—']
+ ].map(row=>'<tr>'+row.map(value=>'<td>'+esc(value)+'</td>').join('')+'</tr>').join('');
+ const suspension=table(['급여','지급정지 시작월','재지원 시작월'],suspensionRows,'system-rules','해외체류 지급정지 기간');
+ app.innerHTML=heading+panel('중지·정지',table(['구분','대상','적용 시점','재책정'],ruleRows,'system-rules','행복e음 중지·정지 기준'))+panel('해외체류 지급정지 기간',suspension)+maintenance;
+}
+function navigate(){
+ const view=location.hash.slice(1);
+ if(view==='budget')budget();
+ else if(view==='pay')pay();
+ else if(view==='haengbok'||view==='system')haengbok();
+ else if(view==='haengbok-guidance'||view==='haengbok-grants')haengbok(view);
+ else if(view==='childcare'||view==='system-childcare')app.innerHTML=back+hero('보육통합정보시스템','준비 중',true);
+ else app.innerHTML=home();
+ window.scrollTo(0,0);
+}
+app.addEventListener('click',event=>{
+ const button=event.target.closest('button');
+ if(!button)return;
+ const {tab:nextTab,period:nextPeriod}=button.dataset;
+ if(nextTab){tab=nextTab;budget();app.querySelector('[data-tab="'+tab+'"]').focus();}
+ if(nextPeriod){period=nextPeriod;budget();app.querySelector('[data-period="'+period+'"]').focus();}
+});
+window.addEventListener('hashchange',navigate);
+navigate();
+if (location.protocol !== 'file:' && 'serviceWorker' in navigator) {
+ navigator.serviceWorker.register('./sw.js').catch(error => console.warn('오프라인 준비에 실패했습니다.', error));
+}
+</script>
+</body>
+</html>
