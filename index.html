@@ -29,6 +29,8 @@
 @media(min-width:820px){.travel-layout{grid-template-columns:minmax(300px,.88fr) minmax(0,1.12fr)}.travel-empty{min-height:160px;display:grid;align-content:center}.travel-dates{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:420px){.travel-layout .change-form{grid-template-columns:1fr}.travel-entry,.travel-output .change-result{padding:15px}}
 .travel-layout [hidden]{display:none!important}
+.grant-picker{display:grid;gap:8px;margin:12px 0 16px}.grant-picker button{min-height:46px;text-align:left;padding:9px 13px}.grant-picker button[aria-pressed=true]{background:var(--deep);color:white;border-color:var(--deep)}.grant-section[hidden]{display:none}.grant-section .grant-steps{padding-left:27px}.grant-section .grant-steps li{padding:10px 8px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.grant-section .grant-steps li:last-child{border-bottom:0}.grant-section .grant-steps li::marker{color:var(--green);font-weight:800}.grant-count{display:inline-block;color:var(--muted);font-size:.86rem;margin:0 0 6px}
+@media(min-width:620px){.grant-picker{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 <meta name="theme-color" content="#103a34">
 <link rel="manifest" href="./manifest.webmanifest">
@@ -286,7 +288,7 @@ function pay(){
  renderPay();
 }
 const grantProcedures=`
-  <section class="panel"><h2>부모급여(차액) 작업방법</h2>
+  <section class="panel grant-section" id="grant-difference"><h2>부모급여(차액) 작업방법</h2>
    <ol class="grant-steps">
     <li>행복E음 - <strong>정기 및 수시급여 생성(11100)</strong></li>
     <li>지급연월 설정, 급여구분: <strong>부모급여(차액)</strong></li>
@@ -306,7 +308,7 @@ const grantProcedures=`
     <li><strong>계좌검증 완료 후 품의승인요청</strong></li>
    </ol>
   </section>
-  <section class="panel"><h2>부모급여(현금) 작업방법</h2>
+  <section class="panel grant-section" id="grant-cash" hidden><h2>부모급여(현금) 작업방법</h2>
    <ol class="grant-steps">
     <li>행복E음 - <strong>정기 및 수시급여 생성(11100)</strong></li>
     <li>지급연월 설정, 급여구분: <strong>부모급여(현금)</strong></li>
@@ -324,7 +326,7 @@ const grantProcedures=`
     <li><strong>계좌검증 완료 후 품의승인요청</strong></li>
    </ol>
   </section>
-  <section class="panel"><h2>양육수당 작업방법</h2>
+  <section class="panel grant-section" id="grant-allowance" hidden><h2>양육수당 작업방법</h2>
    <ol class="grant-steps">
     <li>행복E음 - <strong>정기 및 수시급여 생성(11100)</strong></li>
     <li>지급연월 설정, 급여구분: <strong>양육수당, 농어촌양육수당, 장애아동양육수당</strong></li>
@@ -343,6 +345,24 @@ const grantProcedures=`
    </ol>
   </section>
  `;
+function showGrantProcedures(heading){
+ const choices=[['grant-difference','부모급여(차액)'],['grant-cash','부모급여(현금)'],['grant-allowance','양육수당']];
+ const buttons=choices.map(([id,label],index)=>'<button type="button" data-grant-choice="'+id+'" aria-controls="'+id+'" aria-pressed="'+(index===0)+'">'+label+'</button>').join('');
+ app.innerHTML=heading+'<section class="panel"><h2>보조금 생성</h2><p class="travel-intro">작업할 급여를 선택하세요.</p><div class="grant-picker" role="group" aria-label="급여별 작업방법">'+buttons+'</div></section>'+grantProcedures;
+ const controls=Array.from(app.querySelectorAll('[data-grant-choice]'));
+ for(const control of controls){
+  const section=document.getElementById(control.dataset.grantChoice);
+  const count=section.querySelectorAll('ol > li').length;
+  section.querySelector('h2').insertAdjacentHTML('afterend','<p class="grant-count">총 '+count+'단계</p>');
+  control.addEventListener('click',()=>{
+   for(const choice of controls){
+    const active=choice===control;
+    choice.setAttribute('aria-pressed',String(active));
+    document.getElementById(choice.dataset.grantChoice).hidden=!active;
+   }
+  });
+ }
+}
 const travelProcedures=[
   {
    "title": "출입국만료보장중지대상",
@@ -466,7 +486,9 @@ function showTravel(heading){
    (x.noPaymentGap?'<p>정지 시작 예정월보다 재지원월이 늦지 않아 계산상 지급이 빠지는 달이 없습니다.</p>':'')+
    '<label class="travel-copy-heading" for="travel-copy"><strong>복사용 문구</strong></label><textarea class="change-copy" id="travel-copy" rows="6" readonly></textarea><button id="travel-copy-button" type="button">문구 복사</button><span class="change-status" id="travel-copy-status" role="status"></span>'+travelProcedure(x,arrival);
   const copy=document.getElementById('travel-copy');
-  copy.value=['대상자 이름: '+name+' ('+birth+')','출국일: '+departure,'입국일: '+(arrival||'미입국'),'변동일자: '+x.variation,'지원 재개월: '+restart,'정지 시작월: '+month].join('\n');
+  const copyThreshold=input.kind.value==='school'?30:90;
+  const stay=x.days>=copyThreshold?'해외체류 '+copyThreshold+'일 이상 (총 '+x.days+'일)':'해외체류 '+x.days+'일';
+  copy.value=['대상자 이름: '+name+' ('+birth+')','출국일: '+departure,'입국일: '+(arrival||'미입국'),'변동일자: '+x.variation,'지원 재개월: '+restart,'정지 시작월: '+month,'체류기간: '+stay].join('\n');
   document.getElementById('travel-copy-button').addEventListener('click',async()=>{
    const status=document.getElementById('travel-copy-status');
    try{
@@ -494,7 +516,7 @@ function haengbok(active='haengbok'){
  const heading=back+hero('행복e음','메뉴 코드와 급여 처리·정비 기준을 확인합니다.',true)+tabs;
  if(active==='haengbok-travel'){showTravel(heading);return;}
  if(active==='haengbok-grants'){
-  app.innerHTML=heading+grantProcedures;
+  showGrantProcedures(heading);
   return;
  }
  if(active==='haengbok'){
