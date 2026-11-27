@@ -3,10 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#103a34">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" href="./icon-192.png" type="image/png">
-<link rel="apple-touch-icon" href="./icon-192.png">
 <meta name="description" content="보육 예산과 부모급여·양육수당을 확인하는 보육 업무수첩">
 <title>보육 업무 수첩</title>
 <!-- 아래 데이터는 CSV의 헤더와 빈 셀을 그대로 보존합니다. -->
@@ -28,7 +24,16 @@
 .calendar td > span[hidden]{display:none}
 @media(min-width:731px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1060px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.change-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px 16px;margin-top:12px}.change-form label{display:grid;gap:5px;font-weight:650}.change-form input,.change-form select,.change-copy{width:100%;min-width:0;font:inherit;padding:9px;border:1px solid #9eb4aa;border-radius:8px;background:#fff;color:inherit;box-sizing:border-box}.change-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}.change-primary{background:var(--deep);color:white;border-color:var(--deep)}.change-result{margin-top:12px}.change-result dl{display:grid;grid-template-columns:max-content 1fr;gap:7px 13px;margin:12px 0}.change-result dt{font-weight:700}.change-result dd{margin:0}.change-copy{display:block;resize:vertical;margin:8px 0 12px}.change-badge{color:var(--deep);font-weight:800;font-size:1.2rem}.change-status{margin-left:8px}.change-rules a{text-decoration:underline}
+.travel-layout{display:grid;gap:16px;align-items:start}.travel-layout .panel{margin:0}.travel-entry{padding:20px}.travel-entry h2,.travel-output h2{margin-bottom:4px}.travel-intro,.travel-hint{color:var(--muted);font-size:.9rem}.travel-layout .change-form{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}.travel-layout .change-form label{font-size:.89rem}.travel-layout .change-form input,.travel-layout .change-form select{min-height:44px;font-size:1rem}.travel-layout .change-form .travel-benefit{grid-column:1/-1}.change-actions button,.travel-output button{min-height:42px;padding:8px 14px}.travel-output{min-width:0}.travel-empty{padding:28px 19px;text-align:center;border-style:dashed}.travel-empty h2{font-size:1.12rem}.travel-output .change-result{border-top:4px solid var(--green);padding:19px}.travel-output .change-result[data-tone=action]{border-top-color:#ad5626}.travel-output .change-result[data-tone=wait]{border-top-color:#728680}.travel-kicker{font-weight:700;font-size:.84rem;color:var(--muted);margin:0 0 4px}.travel-dates{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;margin:15px 0!important}.travel-dates div{padding:9px 11px;background:#f3f8f5;border:1px solid #dce9e1;border-radius:9px}.travel-dates dt{font-size:.82rem;color:var(--muted)}.travel-dates dd{font-weight:700;overflow-wrap:anywhere}.travel-copy-heading{margin-top:12px;display:block}.travel-output .change-copy{line-height:1.6;font-size:.93rem}.travel-output .change-status{display:inline-block;max-width:100%;margin:6px 0 0 8px}.travel-output .maintenance-step{margin-top:11px}.travel-output .panel .panel{margin-top:16px;box-shadow:none}.travel-change-error:empty{display:none}.travel-change-error{grid-column:1/-1;color:#932d24;margin:0}.travel-layout [aria-invalid=true]{border-color:#a53228;outline:1px solid #a53228}
+@media(min-width:820px){.travel-layout{grid-template-columns:minmax(300px,.88fr) minmax(0,1.12fr)}.travel-empty{min-height:160px;display:grid;align-content:center}.travel-dates{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:420px){.travel-layout .change-form{grid-template-columns:1fr}.travel-entry,.travel-output .change-result{padding:15px}}
+.travel-layout [hidden]{display:none!important}
 </style>
+<meta name="theme-color" content="#103a34">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
 <header class="top"><div class="top-inner"><span class="top-icon" id="brand-icon"></span><a href="#home">보육 업무 수첩</a></div></header>
@@ -338,33 +343,7 @@ const grantProcedures=`
    </ol>
   </section>
  `;
-function haengbok(active='haengbok'){
- const links=[['haengbok','메뉴 코드'],['haengbok-guidance','급여·정비 기준'],['haengbok-grants','보조금 생성']];
- const tabs='<nav class="tabs subnav" aria-label="행복e음 하위 메뉴">'+links.map(([id,label])=>'<a href="#'+id+'"'+(id===active?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
- const heading=back+hero('행복e음','메뉴 코드와 급여 처리·정비 기준을 확인합니다.',true)+tabs;
- if(active==='haengbok-grants'){
-  app.innerHTML=heading+grantProcedures;
-  return;
- }
- if(active==='haengbok'){
-  const menus=[
-   ['계좌변경신청내역조회','33500'],
-   ['정기 및 수시급여 생성현황','11100'],
-   ['영유아복지 결정정보 전송현황','22300'],
-   ['환수대상자 관리','24230'],
-   ['환수상계내역 조회 및 처리','24420'],
-   ['개인별급여지급내역','33100']
-  ];
-  const menuRows=menus.map(([name,code])=>'<tr><td>'+esc(name)+'</td><td>'+esc(code)+'</td></tr>').join('');
-  app.innerHTML=heading+panel('행복e음 메뉴',table(['메뉴명','메뉴 코드'],menuRows,'system-table','행복e음 메뉴 코드'));
-  return;
- }
- const rules=[
-  ['중지','기본보육, 누리, 유아학비','변동일자 당월','대상자 신청 필요'],
-  ['정지','양육수당, 부모급여','변동일자 다음 달','담당자 직권 처리 가능']
- ];
- const ruleRows=rules.map(row=>'<tr>'+row.map(value=>'<td>'+esc(value)+'</td>').join('')+'</tr>').join('');
- const procedures=[
+const travelProcedures=[
   {
    "title": "출입국만료보장중지대상",
    "steps": [
@@ -400,7 +379,143 @@ function haengbok(active='haengbok'){
    ]
   }
  ];
- const procedureCards=procedures.map(({title,steps})=>'<details class="criteria maintenance-step"><summary>'+esc(title)+'</summary><ol>'+steps.map(step=>'<li>'+esc(step)+'</li>').join('')+'</ol></details>').join('');
+const travelRules={
+ parent:{label:'부모급여',action:'정지',threshold:90,monthly:true,restartOffset:1},
+ care:{label:'양육수당',action:'정지',threshold:90,monthly:true,restartOffset:0},
+ nursery:{label:'기본보육·누리과정',action:'중지',threshold:91,monthly:false},
+ school:{label:'유아학비',action:'중지',threshold:31,monthly:false}
+};
+function travelDate(stamp){return new Date(stamp).toISOString().slice(0,10);}
+function assessTravel(kind,departure,arrival,today){
+ const rule=travelRules[kind];
+ const day=86400000;
+ const left=Date.parse(departure+'T00:00:00Z');
+ const end=Date.parse((arrival||today)+'T00:00:00Z');
+ const threshold=left+(rule.threshold-1)*day;
+ const reached=arrival?end>threshold:end>=threshold;
+ const trigger=travelDate(threshold);
+ const actionDate=travelDate(threshold+(kind==='care'?day:0));
+ const stop=rule.monthly?monthLabel(monthNo(trigger)+1):actionDate.slice(0,7).replace('-','.');
+ const restart=arrival?(rule.monthly?monthLabel(monthNo(arrival)+rule.restartOffset):'보호자 재신청 후 결정'):'입국일 확인 후 산정';
+ const noPaymentGap=Boolean(reached&&arrival&&rule.monthly&&restart<=stop);
+ const status=!reached?(arrival?'정지·중지 대상 아님':'아직 기준 미도달'):arrival?(rule.monthly?'재책정 대상':'재신청 필요'):('해외체류 '+rule.action+' 대상');
+ const variation=!reached?'해당 없음':arrival?arrival:actionDate;
+ return {rule,status,trigger,actionDate,stop,restart,noPaymentGap,variation,reached,days:(end-left)/day+(arrival?0:1)};
+}
+function procedureCard({title,steps},expanded=false){
+ return '<details class="criteria maintenance-step"'+(expanded?' open':'')+'><summary>'+esc(title)+'</summary><ol>'+steps.map(step=>'<li>'+esc(step)+'</li>').join('')+'</ol></details>';
+}
+function travelProcedure(assessment,arrival){
+ if(!assessment.reached)return '';
+ if(arrival&&!assessment.rule.monthly)return panel('재신청 안내','<p>보호자가 '+esc(assessment.rule.label)+'을 재신청한 뒤 자격 결정 내역에서 지원 재개일을 확인하세요.</p>');
+ if(arrival)return panel('행복e음 정비방법',procedureCard(travelProcedures[2],true));
+ const procedure=travelProcedures[assessment.rule.monthly?1:0];
+ if(assessment.rule.threshold===31){
+  const steps=procedure.steps.map(step=>step.replace('사유: 해외체류(90일 이상) 변경','사유: 유아학비에 해당하는 해외체류 사유로 변경'));
+  return panel('행복e음 정비방법',procedureCard({...procedure,steps},true));
+ }
+ return panel('행복e음 정비방법',procedureCard(procedure,true));
+}
+function showTravel(heading){
+ const options=Object.entries(travelRules).map(([id,rule])=>'<option value="'+id+'">'+rule.label+'</option>').join('');
+ app.innerHTML=heading+`<div class="travel-layout"><section class="panel travel-entry"><h2>해외체류 변동관리</h2><p class="travel-intro">현재 적용 중인 급여와 출입국일을 입력하세요. 입국일이 없으면 오늘을 기준으로 계산합니다.</p><form id="travel-form" class="change-form" autocomplete="off" novalidate>
+  <label>대상자 이름<input name="person" required maxlength="60"></label>
+  <label>생년월일<input name="birth" required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="YYMMDD"></label>
+  <label>출국일자<input name="departure" type="date" required></label>
+  <label>입국일자 (선택)<input name="arrival" type="date"></label>
+  <label class="travel-benefit">급여종류<select name="kind">`+options+`</select></label>
+  <div class="change-actions"><button id="travel-judge" class="change-primary" type="button">판정하기</button><button id="travel-example" type="button">예시 입력</button><button type="reset">초기화</button></div>
+  <p class="travel-change-error" id="travel-error" role="alert"></p>
+ </form></section><div class="travel-output"><section id="travel-empty" class="panel travel-empty"><h2>판정 결과</h2><p class="travel-hint">대상자 정보를 입력하고 판정하기를 누르세요.</p></section><section id="travel-result" class="panel change-result" hidden tabindex="-1" aria-live="polite"></section></div></div>`+
+ '<details class="criteria change-rules"><summary>계산 기준</summary><ul><li>출국일은 해외체류 일수에 포함하고 입국일은 제외합니다. 입국일이 비어 있으면 오늘까지 계산합니다.</li><li>부모급여는 90일째가 속한 달의 다음 달부터 지급정지하고 입국월 다음 달에 재지원합니다. 양육수당은 91일째 자격정지, 90일째가 속한 달의 다음 달부터 지급정지하고 입국월에 재지원합니다.</li><li>기본보육·누리과정은 91일째, 유아학비는 31일째 자격중지로 계산합니다. 중지 후에는 보호자의 재신청과 자격 결정을 확인합니다.</li><li>복사용 변동일자는 재입국 건은 입국일, 미입국 건은 표시된 정지·중지 기준일입니다. 실제 행복e음 변동자료 및 기존 처리 여부와 대조하세요.</li></ul></details>';
+ const form=document.getElementById('travel-form');
+ const result=document.getElementById('travel-result');
+ const placeholder=document.getElementById('travel-empty');
+ const error=document.getElementById('travel-error');
+ const input=form.elements;
+ const clear=()=>{result.hidden=true;result.replaceChildren();placeholder.hidden=false;error.textContent='';form.querySelectorAll('[aria-invalid]').forEach(field=>field.removeAttribute('aria-invalid'));};
+ const invalid=(field,message)=>{error.textContent=message;field.setAttribute('aria-invalid','true');field.focus();};
+ form.addEventListener('input',clear);
+ form.addEventListener('reset',clear);
+ document.getElementById('travel-example').addEventListener('click',()=>{
+  input.person.value='예시 아동';
+  input.birth.value='250115';
+  input.departure.value='2026-04-01';
+  input.arrival.value='2026-08-10';
+  input.kind.value='parent';
+  judge();
+ });
+ function judge(){
+  clear();
+  const name=input.person.value.trim(), birth=input.birth.value;
+  const departure=input.departure.value, arrival=input.arrival.value;
+  const parts=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'});
+  const today=parts.format(new Date());
+  const birthDate='20'+birth.slice(0,2)+'-'+birth.slice(2,4)+'-'+birth.slice(4,6);
+  const stamp=Date.parse(birthDate+'T00:00:00Z');
+  if(!name){invalid(input.person,'대상자 이름을 입력하세요.');return;}
+  if(!/^\d{6}$/.test(birth)||!Number.isFinite(stamp)||travelDate(stamp)!==birthDate){invalid(input.birth,'생년월일을 올바른 6자리로 입력하세요. 예: 250115');return;}
+  if(!departure){invalid(input.departure,'출국일자를 입력하세요.');return;}
+  if(birthDate>departure||departure>today){invalid(input.departure,'출국일자는 생년월일부터 오늘 사이로 입력하세요.');return;}
+  if(arrival>today||(arrival&&arrival<departure)){invalid(input.arrival,'입국일자는 출국일부터 오늘 사이로 입력하세요.');return;}
+  const x=assessTravel(input.kind.value,departure,arrival,today);
+  const month=x.reached?(x.noPaymentGap?'해당 없음 (지급 공백 없음)':x.stop):'해당 없음';
+  const restart=x.reached?x.restart:'해당 없음';
+  result.dataset.tone=x.reached?(arrival?'return':'action'):'wait';
+  result.innerHTML='<p class="travel-kicker">판정 결과</p><h2 class="change-badge">'+x.status+'</h2><p class="travel-hint">'+x.rule.label+' · 해외체류 '+x.days+'일 · 기준 '+x.rule.threshold+'일</p><dl class="travel-dates"><div><dt>정지·중지 기준일</dt><dd>'+x.actionDate+'</dd></div><div><dt>'+(x.rule.monthly?'지급정지 시작월':'자격중지일')+'</dt><dd>'+(x.rule.monthly?month:x.reached?x.actionDate:'해당 없음')+'</dd></div><div><dt>지원 재개</dt><dd>'+restart+'</dd></div></dl>'+
+   (x.noPaymentGap?'<p>정지 시작 예정월보다 재지원월이 늦지 않아 계산상 지급이 빠지는 달이 없습니다.</p>':'')+
+   '<label class="travel-copy-heading" for="travel-copy"><strong>복사용 문구</strong></label><textarea class="change-copy" id="travel-copy" rows="6" readonly></textarea><button id="travel-copy-button" type="button">문구 복사</button><span class="change-status" id="travel-copy-status" role="status"></span>'+travelProcedure(x,arrival);
+  const copy=document.getElementById('travel-copy');
+  copy.value=['대상자 이름: '+name+' ('+birth+')','출국일: '+departure,'입국일: '+(arrival||'미입국'),'변동일자: '+x.variation,'지원 재개월: '+restart,'정지 시작월: '+month].join('\n');
+  document.getElementById('travel-copy-button').addEventListener('click',async()=>{
+   const status=document.getElementById('travel-copy-status');
+   try{
+    if(!navigator.clipboard)throw Error('Clipboard unavailable');
+    await navigator.clipboard.writeText(copy.value);
+    status.textContent='복사했습니다.';
+   }catch{
+    copy.focus();
+    copy.select();
+    let copied=false;
+    try{copied=document.execCommand('copy');}catch{}
+    status.textContent=copied?'복사했습니다.':'선택한 문구를 Ctrl+C로 복사하세요.';
+   }
+  });
+  placeholder.hidden=true;
+  result.hidden=false;
+  result.focus();
+ }
+ document.getElementById('travel-judge').addEventListener('click',judge);
+ form.addEventListener('submit',event=>{event.preventDefault();judge();});
+}
+function haengbok(active='haengbok'){
+ const links=[['haengbok','메뉴 코드'],['haengbok-guidance','급여·정비 기준'],['haengbok-grants','보조금 생성'],['haengbok-travel','변동관리']];
+ const tabs='<nav class="tabs subnav" aria-label="행복e음 하위 메뉴">'+links.map(([id,label])=>'<a href="#'+id+'"'+(id===active?' aria-current="page"':'')+'>'+label+'</a>').join('')+'</nav>';
+ const heading=back+hero('행복e음','메뉴 코드와 급여 처리·정비 기준을 확인합니다.',true)+tabs;
+ if(active==='haengbok-travel'){showTravel(heading);return;}
+ if(active==='haengbok-grants'){
+  app.innerHTML=heading+grantProcedures;
+  return;
+ }
+ if(active==='haengbok'){
+  const menus=[
+   ['계좌변경신청내역조회','33500'],
+   ['정기 및 수시급여 생성현황','11100'],
+   ['영유아복지 결정정보 전송현황','22300'],
+   ['환수대상자 관리','24230'],
+   ['환수상계내역 조회 및 처리','24420'],
+   ['개인별급여지급내역','33100']
+  ];
+  const menuRows=menus.map(([name,code])=>'<tr><td>'+esc(name)+'</td><td>'+esc(code)+'</td></tr>').join('');
+  app.innerHTML=heading+panel('행복e음 메뉴',table(['메뉴명','메뉴 코드'],menuRows,'system-table','행복e음 메뉴 코드'));
+  return;
+ }
+ const rules=[
+  ['중지','기본보육, 누리, 유아학비','변동일자 당월','대상자 신청 필요'],
+  ['정지','양육수당, 부모급여','변동일자 다음 달','담당자 직권 처리 가능']
+ ];
+ const ruleRows=rules.map(row=>'<tr>'+row.map(value=>'<td>'+esc(value)+'</td>').join('')+'</tr>').join('');
+ const procedureCards=travelProcedures.map(procedure=>procedureCard(procedure)).join('');
  const maintenance=panel('행복e음 정비방법','<p class="muted">변동집계현황 → 인적변동</p>'+procedureCards);
  const suspensionStart='국외 체류기간이 90일이 되는 날이 속하는 달의 다음 달';
  const suspensionRows=[
@@ -416,7 +531,7 @@ function navigate(){
  if(view==='budget')budget();
  else if(view==='pay')pay();
  else if(view==='haengbok'||view==='system')haengbok();
- else if(view==='haengbok-guidance'||view==='haengbok-grants')haengbok(view);
+ else if(view==='haengbok-guidance'||view==='haengbok-grants'||view==='haengbok-travel')haengbok(view);
  else if(view==='childcare'||view==='system-childcare')app.innerHTML=back+hero('보육통합정보시스템','준비 중',true);
  else app.innerHTML=home();
  window.scrollTo(0,0);
@@ -433,6 +548,7 @@ navigate();
 if (location.protocol !== 'file:' && 'serviceWorker' in navigator) {
  navigator.serviceWorker.register('./sw.js').catch(error => console.warn('오프라인 준비에 실패했습니다.', error));
 }
+
 </script>
 </body>
 </html>
