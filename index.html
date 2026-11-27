@@ -425,6 +425,15 @@ function assessTravel(kind,departure,arrival,today){
 function procedureCard({title,steps},expanded=false){
  return '<details class="criteria maintenance-step"'+(expanded?' open':'')+'><summary>'+esc(title)+'</summary><ol>'+steps.map(step=>'<li>'+esc(step)+'</li>').join('')+'</ol></details>';
 }
+function travelCopyReason(assessment){
+ if(!assessment.reached)return '해외체류 '+assessment.days+'일로 정지·중지 기준에 해당하지 않습니다.';
+ if(assessment.rule.monthly){
+  const restart=assessment.rule.restartOffset===0?'입국월부터':'입국월의 다음 달부터';
+  return '출국일 포함 90일이 속하는 당월까지 지원, 다음달부터 지급 정지합니다. '+restart+' 지원이 재개됩니다.';
+ }
+ const source=assessment.rule.threshold===31?'해외체류 30일 이상':'해외체류 90일 이상';
+ return source+'으로 지원 자격이 중지되었습니다.';
+}
 function travelProcedure(assessment,arrival){
  if(!assessment.reached)return '';
  if(arrival&&!assessment.rule.monthly)return panel('재신청 안내','<p>보호자가 '+esc(assessment.rule.label)+'을 재신청한 뒤 자격 결정 내역에서 지원 재개일을 확인하세요.</p>');
@@ -486,9 +495,7 @@ function showTravel(heading){
    (x.noPaymentGap?'<p>정지 시작 예정월보다 재지원월이 늦지 않아 계산상 지급이 빠지는 달이 없습니다.</p>':'')+
    '<label class="travel-copy-heading" for="travel-copy"><strong>복사용 문구</strong></label><textarea class="change-copy" id="travel-copy" rows="6" readonly></textarea><button id="travel-copy-button" type="button">문구 복사</button><span class="change-status" id="travel-copy-status" role="status"></span>'+travelProcedure(x,arrival);
   const copy=document.getElementById('travel-copy');
-  const copyThreshold=input.kind.value==='school'?30:90;
-  const stay=x.days>=copyThreshold?'해외체류 '+copyThreshold+'일 이상 (총 '+x.days+'일)':'해외체류 '+x.days+'일';
-  copy.value=['대상자 이름: '+name+' ('+birth+')','출국일: '+departure,'입국일: '+(arrival||'미입국'),'변동일자: '+x.variation,'지원 재개월: '+restart,'정지 시작월: '+month,'체류기간: '+stay].join('\n');
+  copy.value=['대상자 이름: '+name+' ('+birth+')','출국일: '+departure,'입국일: '+(arrival||'미입국'),'변동일자: '+x.variation,'지원 재개월: '+restart,'정지 시작월: '+month,'처리 사유: '+travelCopyReason(x)].join('\n');
   document.getElementById('travel-copy-button').addEventListener('click',async()=>{
    const status=document.getElementById('travel-copy-status');
    try{

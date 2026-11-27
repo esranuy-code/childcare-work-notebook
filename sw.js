@@ -1,5 +1,5 @@
 const cachePrefix = 'childcare-notebook-';
-const cacheName = cachePrefix + 'v14';
+const cacheName = cachePrefix + 'v15';
 const scope = self.registration.scope;
 const shell = new URL('./', scope).href;
 const shellFiles = ['./', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
